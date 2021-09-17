@@ -1,3 +1,3 @@
 
-class ResultBase():
+class ResultTest():
     pass

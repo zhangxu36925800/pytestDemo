@@ -1,14 +1,13 @@
-from core.result_base import ResultBase
+from core.result_base import ResultTest
 from api.user import user
 from common.logger import logger
-
 
 def get_all_user_info():
     """
     获取全部用户信息
     :return: 自定义的关键字返回结果 result
     """
-    result = ResultBase()
+    result = ResultTest()
     res = user.list_all_users()
     result.success = False
     if res.json()["code"] == 0:
@@ -26,7 +25,7 @@ def get_one_user_info(username):
     :param username:  用户名
     :return: 自定义的关键字返回结果 result
     """
-    result = ResultBase()
+    result = ResultTest()
     res = user.list_one_user(username)
     result.success = False
     if res.json()["code"] == 0:
@@ -49,7 +48,7 @@ def register_user(username, password, telephone, sex="", address=""):
     :param address: 联系地址
     :return: 自定义的关键字返回结果 result
     """
-    result = ResultBase()
+    result = ResultTest()
     json_data = {
         "username": username,
         "password": password,
@@ -79,19 +78,20 @@ def login_user(username, password):
     :param password: 密码
     :return: 自定义的关键字返回结果 result
     """
-    result = ResultBase()
+    result = ResultTest()
     payload = {
-        "username": username,
-        "password": password
+        "userAccount": username,
+        "userPassword": password
     }
     header = {
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/json;charset=UTF-8"
     }
-    res = user.login(data=payload, headers=header)
+    res = user.login(json=payload, headers=header)
+    # print(res.json())
     result.success = False
-    if res.json()["code"] == 0:
+    if res.json()["code"] == 200:
         result.success = True
-        result.token = res.json()["login_info"]["token"]
+        result.token = res.json()["sessionId"]
     else:
         result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["msg"])
     result.msg = res.json()["msg"]
@@ -112,7 +112,7 @@ def update_user(id, admin_user, new_password, new_telephone, token, new_sex="", 
     :param new_address: 新联系地址
     :return: 自定义的关键字返回结果 result
     """
-    result = ResultBase()
+    result = ResultTest()
     header = {
         "Content-Type": "application/json"
     }
@@ -144,7 +144,7 @@ def delete_user(username, admin_user, token):
     :param token: 当前管理员用户的token
     :return: 自定义的关键字返回结果 result
     """
-    result = ResultBase()
+    result = ResultTest()
     json_data = {
         "admin_user": admin_user,
         "token": token,

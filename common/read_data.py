@@ -2,8 +2,6 @@ import yaml
 import json
 from configparser import ConfigParser
 from common.logger import logger
-
-
 class MyConfigParser(ConfigParser):
     # 重写 configparser 中的 optionxform 函数，解决 .ini 文件中的 键option 自动转为小写的问题
     def __init__(self, defaults=None):
@@ -38,5 +36,4 @@ class ReadFileData():
         data = dict(config._sections)
         # print("读到数据 ==>>  {} ".format(data))
         return data
-
 data = ReadFileData()

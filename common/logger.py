@@ -1,6 +1,7 @@
 import logging, time, os
-
+#获取当前文件所在的根目录
 BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+# print(BASE_PATH)
 # 定义日志文件路径
 LOG_PATH = os.path.join(BASE_PATH, "log")
 if not os.path.exists(LOG_PATH):
@@ -17,7 +18,7 @@ class Logger():
         self.formater = logging.Formatter(
             '[%(asctime)s][%(filename)s %(lineno)d][%(levelname)s]: %(message)s')
 
-        self.filelogger = logging.FileHandler(self.logname, mode='a', encoding="UTF-8")
+        self.filelogger = logging.FileHandler(self.logname, mode='w', encoding="UTF-8")
         self.console = logging.StreamHandler()
         self.console.setLevel(logging.DEBUG)
         self.filelogger.setLevel(logging.DEBUG)
