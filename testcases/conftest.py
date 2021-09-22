@@ -4,11 +4,13 @@ import allure
 from api.user import user
 from common.mysql_operate import db
 from common.read_data import data
+from common.project_path import BASE_PATH
+from common.project_path import api_root_url
 from common.logger import logger
-
-BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
-
-
+# # BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+# BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+# data_file_path = os.path.join(BASE_PATH, "config", "setting.ini")
+# api_root_url = data.load_ini(data_file_path)["host"]["api_root_url"]
 def get_data(yaml_file_name):
     try:
         data_file_path = os.path.join(BASE_PATH, "data", yaml_file_name)
@@ -22,8 +24,6 @@ def get_data(yaml_file_name):
 base_data = get_data("base_data.yml")
 api_data = get_data("api_test_data.yml")
 scenario_data = get_data("scenario_test_data.yml")
-
-
 @allure.step("前置步骤 ==>> 清理数据")
 def step_first():
     logger.info("******************************")
