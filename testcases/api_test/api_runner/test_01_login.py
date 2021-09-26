@@ -9,12 +9,14 @@ from common.CopyFiles import CopyFiles
 @allure.step("步骤1 ==>> 登录用户")
 def step_1(username):
     logger.info("步骤1 ==>> 登录用户：{}".format(username))
-
+@allure.tag(api_root_url+"/api/auth/login")
 @allure.severity(allure.severity_level.NORMAL)
 @allure.epic("针对单个接口的测试")
 @allure.feature("用户登录模块")
+
 class TestUserLogin():
-    @allure.tag(api_root_url+"/api/auth/login")
+
+    # @allure.story("这是用户故事")
     @allure.title("用例--登录用户")
     @allure.description("接口请求地址:"+api_root_url+"/api/auth/login")
     @pytest.mark.parametrize("username, password, except_result, except_code, except_msg",
@@ -32,6 +34,6 @@ class TestUserLogin():
 
 
 if __name__ == '__main__':
-    pytest.main(["-q", "test_03_login.py"])
+    pytest.main(["-q", "test_01_login.py"])
 CopyFiles().EvromentConfig()
 
