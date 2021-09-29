@@ -4,7 +4,7 @@ from operation.user import login_user
 from testcases.conftest import api_data
 from common.project_path import api_root_url
 from common.logger import logger
-from common.CopyFiles import CopyFiles
+# from common.CopyFiles import CopyFiles
 
 @allure.step("步骤1 ==>> 登录用户")
 def step_1(username):
@@ -35,5 +35,5 @@ class TestUserLogin():
 
 if __name__ == '__main__':
     pytest.main(["-q", "test_01_login.py"])
-CopyFiles().EvromentConfig()
+# CopyFiles().EvromentConfig()
 

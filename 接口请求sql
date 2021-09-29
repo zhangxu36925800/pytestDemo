@@ -1,0 +1,1 @@
+1、 查看项目是否新增成功，状态是否正确:select * from project WHERE 1=1 and project_code=2344324 order by id desc limit 5
