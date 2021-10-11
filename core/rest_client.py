@@ -1,7 +1,6 @@
 import requests
 import json as complexjson
 from common.logger import logger
-import pytest
 
 class RestClient():
 

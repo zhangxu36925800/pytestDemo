@@ -5,8 +5,11 @@ test_login_user:
   - ["测试test", "123456", False, 203, "用户名不存在"]
 
 
-
-
+test_add_project:
+  #项目名称，项目编码，项目状态码,操作人
+  #   projectName,projectCode,status,operater,except_result,expect_code,except_msg
+  - ["test1", "242434", "0", "星空梦语", True, 200, "新增数据成功"]   #正向测试用例
+  - ["test2", "242432", "1", "张旭", False, 201, "项目编码不能与已有项目编码重复"]      #反向测试用例
 
 
 #------------------------------------非本次测试数据--------------------------------#

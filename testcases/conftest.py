@@ -5,8 +5,9 @@ from api.user import user
 from common.mysql_operate import db
 from common.read_data import data
 from common.project_path import BASE_PATH
-from common.project_path import api_root_url
+# from common.project_path import api_root_url
 from common.logger import logger
+import requests
 # # BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 # BASE_PATH = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 # data_file_path = os.path.join(BASE_PATH, "config", "setting.ini")
@@ -45,15 +46,16 @@ def login_fixture():
     username = base_data["init_admin_user"]["username"]
     password = base_data["init_admin_user"]["password"]
     header = {
-        "Content-Type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/json;charset=UTF-8",
     }
     payload = {
-        "username": username,
-        "password": password
+        "userAccount": username,
+        "userPassword": password
     }
-    loginInfo = user.login(data=payload, headers=header)
-    step_login(username, password)
-    yield loginInfo.json()
+    loginInfo = user.login(json=payload, headers=header)
+    cook_dic = requests.utils.dict_from_cookiejar(loginInfo.cookies)#获取登录时产生的cookies(已转化为字典格式)
+    # step_login(username, password)
+    yield cook_dic["JSESSIONID"]
 
 
 @pytest.fixture(scope="function")
