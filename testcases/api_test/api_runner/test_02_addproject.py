@@ -25,11 +25,11 @@ class TestAddProject():
         logger.info("*************** 开始执行用例 ***************")
         user_cookie = login_fixture#获取登录产生的cookie
         current_time = TimeUtil.format_timer_to_str()#获取当前时间(24hours)
-        result = add_project(projectName, projectCode, status, operater,user_cookie,createTime=current_time)
-        assert result.response.status_code == expect_code
+        result = add_project(projectName, projectCode, status, operater,user_cookie,expect_code,createTime=current_time)
+        # assert result.response.status_code == 200
         assert result.success == except_result, result.error
         logger.info("code ==>> 期望结果：{}， 实际结果：【 {} 】".format(expect_code, result.response.json().get("code")))
-        assert result.response.json().get("code") == expect_code
+        assert result.response.json().get("code") == expect_code,result.error
         # assert except_msg in result.msg
         # logger.info("*************** 结束执行用例 ***************")
 

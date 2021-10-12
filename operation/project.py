@@ -7,7 +7,7 @@ from common.logger import logger
 """
 
 
-def add_project(projectName, projectCode, status, operator,sessionId,createTime=None):
+def add_project(projectName, projectCode, status, operator, sessionId, expect_code, createTime=None):
     """
     :param projectName: 项目名称
     :param projectCode: 项目编码
@@ -26,15 +26,20 @@ def add_project(projectName, projectCode, status, operator,sessionId,createTime=
     }
     header = {
         "Content-Type": "application/json;charset=UTF-8",
-        "Cookie": "JSESSIONID="+sessionId
+        "Cookie": "JSESSIONID=" + sessionId
     }
 
     res = project.add_poject(json=playload, headers=header)
     result.success = False
-    if res.json()["code"]==200:
-        result.success = True
+
+    if res.status_code == 200:
+        if res.json()["code"] == expect_code:
+            result.success = True
+        else:
+            result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["msg"])
     else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["msg"])
+        result.error = "接口请求错误,服务请求状态码【{}】, 返回信息：{} ".format(res.status_code, res)
+
     result.response = res
-    logger.info("登录用户 ==>> 返回结果 ==>> {}".format(result.response.text))
+    logger.info("新增项目 ==>> 返回结果 ==>> {}".format(result.response.text))
     return result
