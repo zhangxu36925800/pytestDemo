@@ -6,7 +6,7 @@ class Project(RestClient):
         super(Project,self).__init__(api_root_url,**kwargs)
 
     def add_poject(self,**kwargs):
-       return self.post("/api/project/editProjet",**kwargs) #重写post方法
+       return self.post("/api/project/editProject",**kwargs) #重写post方法
 
 
 project = Project(api_root_url)

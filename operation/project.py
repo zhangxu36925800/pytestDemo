@@ -35,6 +35,7 @@ def add_project(projectName, projectCode, status, operator, sessionId, expect_co
     if res.status_code == 200:
         if res.json()["code"] == expect_code:
             result.success = True
+            # pass
         else:
             result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["msg"])
     else:
