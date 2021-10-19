@@ -15,6 +15,8 @@ class User(RestClient):
     def login(self, **kwargs):
         return self.post("/api/auth/login", **kwargs)
 
+
+#---------------------非本次测试接口---------------------
     def list_all_users(self, **kwargs):
         return self.get("/users", **kwargs)
 
@@ -33,3 +35,5 @@ class User(RestClient):
 
 
 user = User(api_root_url)
+
+

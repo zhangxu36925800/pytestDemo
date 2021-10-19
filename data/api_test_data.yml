@@ -1,3 +1,18 @@
+test_login_user:
+  # 用户名,密码,期望结果,期望返回码,期望返回信息
+  # username, password, except_result, except_code, except_msg
+  - ["admin", "Aa123456", True, 200, "登录成功"]
+  - ["测试test", "123456", False, 203, "用户名不存在"]
+
+
+test_add_project:
+  #项目名称，项目编码，项目状态码,操作人
+  #   projectName,projectCode,status,operater,except_result,expect_code,except_msg
+  - ["test1", "01234567", "0", "星空梦语", 200, "新增数据成功"]   #正向测试用例
+  - ["test2", "123123", "1", "张旭", 201, "项目编码不能与已有项目编码重复"]      #反向测试用例
+
+
+#------------------------------------非本次测试数据--------------------------------#
 test_get_all_user_info:
   # 期望结果,期望返回码,期望返回信息
   # except_result, except_code, except_msg
@@ -16,11 +31,7 @@ test_register_user:
   - ["测试test", "123456", "13599999999", "3", "深圳市宝安区", False, 2003, "输入的性别只能是 0(男) 或 1(女)"]
   - ["wintest4", "123456", "13599999999", "1", "深圳市宝安区", False, 2002, "用户名已存在"]
 
-test_login_user:
-  # 用户名,密码,期望结果,期望返回码,期望返回信息
-  # username, password, except_result, except_code, except_msg
-  - ["admin", "Aa123456", True, 200, "登录成功"]
-  - ["测试test", "123456", False, 203, "用户名不存在"]
+
 
 test_update_user:
   # 修改的用户ID,新密码,新手机号,新性别,新联系地址,期望结果,期望返回码,期望返回信息

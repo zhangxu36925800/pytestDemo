@@ -59,4 +59,3 @@ allure serve ./report
 最终，可以看到测试报告的效果图如下：
 
 ![image.png](https://upload-images.jianshu.io/upload_images/16853007-248f805c82dbf99c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-1、 查看项目是否新增成功，状态是否正确:select * from project WHERE 1=1 and project_code=2344324 order by id desc limit 5

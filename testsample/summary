@@ -1,0 +1,13 @@
+1、yield关键字
+作用:返回一个迭代生成器，带有yield关键字的函数就是生成器函数，只有被调用时才会执行里面的代码，不调用不执行(只会返回一个generato对象)
+ def generator_test(self):
+        for i in range(1, 10):
+            yield i #返回一个generator对象
+if __name__ == '__main__':
+        genetor = HttpRequest().generator_test()#调用生成器函数对象
+        print(next(genetor) )#同下面的效果是一样
+        print(genetor.send(genetor)) #按顺序一次返回一个循环体中的数值，不会一次性返回(跟return的区别)
+        #next(对象)和对象.send的作用是一样的。
+2、获取cookies
+如果返回中没有token,需要先获取cookies的原始cookiejar对象，然后通过requests.utils.dict_from_cookiejar(cookie)转为字典进行解析，
+即可获取cookies中的jessionid字符串值
