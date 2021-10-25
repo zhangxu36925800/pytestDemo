@@ -58,7 +58,7 @@ def login_fixture():
     yield cook_dic["JSESSIONID"]
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="session")
 def add_delete_project():
     """删除用户前，先在数据库插入一条用户数据"""
     del_sql = base_data["init_sql"]["delete_add_project"]

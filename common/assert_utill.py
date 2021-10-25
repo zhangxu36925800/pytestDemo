@@ -37,7 +37,7 @@ class AssertUtil(object):
         if res.status_code == 200:
             expected = AssertUtil.__convert_byte_str(expected)
             actual = AssertUtil.__convert_byte_str(actual)
-            assert expected == actual, "期望结果:【{}】, 实际结果:【{}】,响应结果:{} ".format(expected,actual,res)
+            assert expected == actual, "期望结果:【{}】, 实际结果:【{}】,响应结果:{} ".format(expected,actual,res.json())
         else:
             assert res.status_code == 200,"接口请求错误,服务请求状态码【{}】, 返回信息：{} ".format(res.status_code, res)
 

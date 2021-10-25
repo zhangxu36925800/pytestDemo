@@ -30,16 +30,11 @@ class TestAddProject():
         res = add_project(projectName, projectCode, status, operater, user_cookie, createTime=current_time)
         if res.status_code == 200:
             AssertUtil.assert_equal(res, expect_code, res.json()["code"])#断言返回编码
-            logger.info("code ==>> 期望结果：{}， 实际结果：【 {} 】".format(expect_code, res.json()))
             AssertUtil.assert_str(res,expect_msg,res.json()["msg"]) #断言返回消息
             # logger.info("code ==>> 期望结果：{}， 实际结果：【 {} 】".format(expect_msg, res.json()))
         else:
             AssertUtil.assert_equal(res,200,res.status_code)
-
-
-
-
-        # logger.info("*************** 结束执行用例 ***************")
+        logger.info("code ==>> 期望结果：{}， 实际结果：【 {} 】".format(expect_code, res.json()))
 
 
 if __name__ == "__main__":
