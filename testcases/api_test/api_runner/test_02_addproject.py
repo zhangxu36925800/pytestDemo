@@ -5,6 +5,7 @@ from testcases.conftest import api_data
 from common.project_path import api_root_url
 from common.logger import logger
 from common.time_operate import TimeUtil
+from common.assert_utill import AssertUtil
 
 
 # @allure.step("步骤2 ==>> 新建项目")
@@ -26,16 +27,20 @@ class TestAddProject():
         logger.info("*************** 开始执行用例 ***************")
         user_cookie = login_fixture  # 获取登录产生的cookie
         current_time = TimeUtil.format_timer_to_str()  # 获取当前时间(24hours)
-        result = add_project(projectName, projectCode, status, operater, user_cookie, expect_code,
-                             createTime=current_time)
-        # assert result.response.status_code == 200
-        assert result.success == True, result.error
-        logger.info("code ==>> 期望结果：{}， 实际结果：【 {} 】".format(expect_code, result.response.json().get("code")))
-        # assert result.response.json().get("code") == expect_code, result.error
-        # assert except_msg in result.msg
+        res = add_project(projectName, projectCode, status, operater, user_cookie, createTime=current_time)
+        if res.status_code == 200:
+            AssertUtil.assert_equal(res, expect_code, res.json()["code"])#断言返回编码
+            logger.info("code ==>> 期望结果：{}， 实际结果：【 {} 】".format(expect_code, res.json()))
+            AssertUtil.assert_str(res,expect_msg,res.json()["msg"]) #断言返回消息
+            # logger.info("code ==>> 期望结果：{}， 实际结果：【 {} 】".format(expect_msg, res.json()))
+        else:
+            AssertUtil.assert_equal(res,200,res.status_code)
+
+
+
+
         # logger.info("*************** 结束执行用例 ***************")
 
 
 if __name__ == "__main__":
     pytest.main(["-q", "-s", "test_02_addproject.py"])
-

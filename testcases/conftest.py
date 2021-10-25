@@ -67,8 +67,8 @@ def add_delete_project():
     # yield
     # 因为有些情况是不给删除管理员用户的，这种情况需要手动清理上面插入的数据
     db.execute_db(del_sql)
-    logger.info("删除用户操作：手工清理处理失败的数据")
-    logger.info("执行后置SQL：{}".format(del_sql))
+    # logger.info("删除用户操作：手工清理处理失败的数据")
+    # logger.info("执行后置SQL：{}".format(del_sql))
 
 
 @pytest.fixture(scope="function")

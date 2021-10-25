@@ -25,12 +25,12 @@ class TestUserLogin():
         logger.info("*************** 开始执行用例 ***************")
         result = login_user(username, password)
         step_1(username)
-        assert result.response.status_code == except_code
+        # assert result.response.status_code == except_code
         assert result.success == except_result, result.error
         logger.info("code ==>> 期望结果：{}， 实际结果：【 {} 】".format(except_code, result.response.json().get("code")))
         assert result.response.json().get("code") == except_code
         # assert except_msg in result.msg
-        # logger.info("*************** 结束执行用例 ***************")
+
 
 
 if __name__ == '__main__':
