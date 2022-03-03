@@ -1,2 +1,4 @@
 1、新增项目:http://localhost:8009/api/project/editProjec
 {"data":{"}}projectName":"test1","projectCode":"242434","status":"0","operater":"星空梦语","createTime":""
+2、模块列表项目加载接口:http://localhost:8009/api/project/queryAllProject
+{"offset":1,"limit":100,"data":{"projectCode":""}}

@@ -1,13 +1,18 @@
 1、yield关键字
-作用:返回一个迭代生成器，带有yield关键字的函数就是生成器函数，只有被调用时才会执行里面的代码，不调用不执行(只会返回一个generato对象)
- def generator_test(self):
+作用:返回一个迭代生成器，带有yield关键字的函数就是生成器函数，只有被调用时才会执行里面的代码，不调用不执行(只会返回一个generate对象)
+ def generater_test(self):
         for i in range(1, 10):
-            yield i #返回一个generator对象
+            yield i #返回一个generater对象
 if __name__ == '__main__':
-        genetor = HttpRequest().generator_test()#调用生成器函数对象
-        print(next(genetor) )#同下面的效果是一样
-        print(genetor.send(genetor)) #按顺序一次返回一个循环体中的数值，不会一次性返回(跟return的区别)
+        generator = HttpRequest().generater_test()#调用生成器函数对象
+        print(next(generator) )#同下面的效果是一样
+        print(generator.end(generator)) #按顺序一次返回一个循环体中的数值，不会一次性返回(跟return的区别)
         #next(对象)和对象.send的作用是一样的。
 2、获取cookies
 如果返回中没有token,需要先获取cookies的原始cookiejar对象，然后通过requests.utils.dict_from_cookiejar(cookie)转为字典进行解析，
-即可获取cookies中的jessionid字符串值
+即可获取cookies中的sessionid字符串值
+3、传入的参数值如果是关键字参数不限制个数和位置，但是key的名字一定要一致，**kargs和指定的名称两种方式来定义形参;
+   如果不是可变类型(**kargs)的关键字参数时，传参可以写key也可以不写key,如果是**kargs的可变类型传参一定写key
+   如果不写key,则按照key的顺序默认进行赋值
+4、位置参数传参个数、参数类型和参数位置必须要一一对应
+5、jsonpath解析:data.list[?(@.circleId=='$circleId')].circleApplyId

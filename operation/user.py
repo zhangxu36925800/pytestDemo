@@ -87,16 +87,16 @@ def login_user(username, password):
         "Content-Type": "application/json;charset=UTF-8"
     }
     res = user.login(json=payload, headers=header)
-    # print(res.json())
-    result.success = False
-    if res.json()["code"] == 200:
-        result.success = True
-    else:
-        result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["msg"])
-    result.msg = res.json()["msg"]
-    result.response = res
-    logger.info("登录用户 ==>> 返回结果 ==>> {}".format(result.response.text))
-    return result
+    # # print(res.json())
+    # result.success = False
+    # if res.json()["code"] == 200:
+    #     result.success = True
+    # else:
+    #     result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["msg"])
+    # result.msg = res.json()["msg"]
+    # result.response = res
+    # logger.info("登录用户 ==>> 返回结果 ==>> {}".format(result.response.text))
+    return res
 
 
 def update_user(id, admin_user, new_password, new_telephone, token, new_sex="", new_address=""):

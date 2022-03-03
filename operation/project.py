@@ -1,5 +1,6 @@
 from api.project import project
 from core.result_base import ResultTest
+
 # from common.logger import logger
 
 """
@@ -7,11 +8,7 @@ from core.result_base import ResultTest
 """
 
 
-
-
-
-
-def add_project(projectName, projectCode, status, operator, sessionId,createTime=None):
+def add_project(projectName, projectCode, status, operator, sessionId, createTime=None):
     """
     :param projectName: 项目名称
     :param projectCode: 项目编码
@@ -36,24 +33,20 @@ def add_project(projectName, projectCode, status, operator, sessionId,createTime
     res = project.add_poject(json=playload, headers=header)
     return res
 
-    # result.success = False
-    # if res.status_code == 200:
-    #     if res.json()["code"] == expect_code:
-    #         result.success = True
-    #         # pass
-    #     else:
-    #         result.error = "接口返回码是 【 {} 】, 返回信息：{} ".format(res.json()["code"], res.json()["msg"])
-    # else:
-    #     result.error = "接口请求错误,服务请求状态码【{}】, 返回信息：{} ".format(res.status_code, res)
-    #
-    # result.response = res
-    # logger.info("新增项目 ==>> 返回结果 ==>> {}".format(result.response.text))
-    # return result
 
-# @staticmethod
+def query_project_unino(projectCode, sessionId):
+    """
+    根据项目编码查找指定项目
+    :param projectCode:  项目编码
+    :param sessionId: 用户登录cookie
+    :return:
+    """
+    playload = {"offset": 1, "limit": 100, "data": {"projectCode": projectCode}}
+    header = {
+        "Content-Type": "application/json;charset=UTF-8",
+        "Cookie": "JSESSIONID=" + sessionId
+    }
+    res = project.query_project(json=playload, headers=header)
+    return res
 
-# @staticmethod
-def __convert_byte_str(b):
-    if isinstance(b, bytes):
-        return b.decode()
-    return b
+

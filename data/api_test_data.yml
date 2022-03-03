@@ -1,7 +1,7 @@
 test_login_user:
   # 用户名,密码,期望结果,期望返回码,期望返回信息
   # username, password, except_result, except_code, except_msg
-  - ["admin", "Aa123456", True, 200, "登录成功"]
+  - ["admin", "Aa123456", True, 200, "登录成"]
   - ["测试test", "123456", False, 203, "用户名不存在"]
 
 
@@ -9,7 +9,8 @@ test_add_project:
   #项目名称，项目编码，项目状态码,操作人
   #   projectName,projectCode,status,operater,except_result,expect_code,except_msg
   - ["test1", "01234567", "0", "星空梦语", 200, "新数据成功"]   #正向测试用例
-  - ["test2", "123123", "1", "张旭", 202, "项目编码不能与已有项目编码重复"]      #反向测试用例
+  - ["test2", "123123", "1", "张旭", 201, "项目编码不能与已有项目编码重复"]      #反向测试用例
+  - ["test2", "$codeNo", "1", "张旭", 201, "项目编码不能与已有项目编码重复"]
 
 
 #------------------------------------非本次测试数据--------------------------------#

@@ -16,6 +16,7 @@ def get_data(yaml_file_name):
     try:
         data_file_path = os.path.join(BASE_PATH, "data", yaml_file_name)
         yaml_data = data.load_yaml(data_file_path)
+
     except Exception as ex:
         pytest.skip(str(ex))
     else:
@@ -41,7 +42,7 @@ def step_login(username, password):
     logger.info("前置步骤 ==>> 管理员 {} 登录，返回信息 为：{}".format(username, password))
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
 def login_fixture():
     username = base_data["init_admin_user"]["username"]
     password = base_data["init_admin_user"]["password"]
@@ -52,15 +53,14 @@ def login_fixture():
         "userAccount": username,
         "userPassword": password
     }
-    loginInfo = user.login(json=payload, headers=header)
-    cook_dic = requests.utils.dict_from_cookiejar(loginInfo.cookies)#获取登录时产生的cookies(已转化为字典格式)
+    logininfo = user.login(json=payload, headers=header)
+    cook_dic = requests.utils.dict_from_cookiejar(logininfo.cookies)#获取登录时产生的cookies(已转化为字典格式)
     # step_login(username, password)
     yield cook_dic["JSESSIONID"]
 
 
 @pytest.fixture(scope="session")
 def add_delete_project():
-    """删除用户前，先在数据库插入一条用户数据"""
     del_sql = base_data["init_sql"]["delete_add_project"]
     step_first()
     logger.info("执行前置SQL：{}".format(del_sql))
