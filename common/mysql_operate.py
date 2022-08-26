@@ -1,6 +1,4 @@
 import pymysql
-import os
-from common.read_data import data
 from common.logger import logger
 from common.project_path import mysql_data
 

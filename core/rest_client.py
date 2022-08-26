@@ -61,3 +61,4 @@ class RestClient():
         logger.info("接口上传附件 files 参数 ==>> {}".format(files))
         logger.info("接口 cookies 参数 ==>> {}".format(complexjson.dumps(cookies, indent=4, ensure_ascii=False)))
 
+

@@ -15,6 +15,8 @@ def step_2(username):
     logger.info("步骤1 ==>> 获取某个用户信息：{}".format(username))
 
 
+
+
 @allure.severity(allure.severity_level.TRIVIAL)
 @allure.epic("针对单个接口的测试")
 @allure.feature("获取用户信息模块")
